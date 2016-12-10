@@ -3,9 +3,9 @@ require("WorldController")
 require("WorldRenderer")
 function GameStage()
 
-	local worldController = WorldController()
-	local worldRenderer = WorldRenderer()
-
+	-----------------------
+	-- Von aussen erreichbar
+	-----------------------
 	local self = {
 		data = {
 			units = {}
@@ -13,6 +13,12 @@ function GameStage()
 		--renderer = nil,
 		--unitController = nil
 	}
+
+	-----------------------
+	-- Lokal
+	-----------------------
+	local worldController = WorldController()
+	local worldRenderer = WorldRenderer()
 
 	-----------------------
 	-- Test Daten
