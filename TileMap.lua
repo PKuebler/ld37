@@ -23,7 +23,9 @@ function TileMap(xSize,ySize,tileHeight,tileWidth)
 
 			mapData[x][y] = {
 				sprite = 5,
-				dirty = true
+				dirty = true,
+				-- a = west, w = north, d = east, s = south
+				orientation = 's'
 			}
 	    	--idmap[x][y] = spriteBatch:add(quads[5],x*tilesize,y*tilesize)
 
