@@ -9,7 +9,7 @@ function MenuStage()
 	function self.start()
 		print("alive")
 		-- add btn schmeisst error
-	--	buttons.add("Play",150,150,150,50)
+		buttons.add("Play",150,150,150,50)
 	end
 
 	function self.update(dt)
@@ -18,7 +18,7 @@ function MenuStage()
 
 	function self.draw()
 		-- render btnmnger
-	--	buttons.draw()
+		buttons.draw()
 	end
 
 	function self.stop()

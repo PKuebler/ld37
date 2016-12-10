@@ -4,8 +4,7 @@ function ButtonManager()
 	}
 
 	function self.add(name, x, y, w, h)
-		print("self")
-		self.buttons[name] = {x,y,w,h}
+		self.buttons[name] = {x=x,y=y,w=w,h=h}
 	end
 
 	function self.update()
@@ -13,8 +12,7 @@ function ButtonManager()
 
 	function self.draw()
 
-		for k, v in pairs(buttons) do
-			print(k,v) 
+		for k, v in pairs(self.buttons) do
 		end
 
 		-- love.graphics.rectangle("fill", x, y, w, h )
