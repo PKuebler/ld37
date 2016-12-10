@@ -18,9 +18,9 @@ function love.load()
 end
 
 function love.update(dt)
-	--stages.update(dt)
+	stages.update(dt)
 end
 
 function love.draw()
-	--stages.draw()
+	stages.draw()
 end

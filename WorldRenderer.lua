@@ -2,8 +2,12 @@ function WorldRenderer(controller)
 	local self = {
 	}
 	-- local spritebatch = nil
-	-- local tilemap = nil
-	function load()
+	local worldController = controller
+	function self.load()
+	end
+	
+	function self.draw()
+		worldController.tilemap.draw()
 	end
 
 	return self

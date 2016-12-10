@@ -10,6 +10,8 @@ function TileMap(xSize,ySize,tileHeight,tileWidth)
 	local idmap = {}
 	local mapData = {}
 
+
+
 	function self.load()
 
 		print("tilemapLoad")
@@ -33,6 +35,12 @@ function TileMap(xSize,ySize,tileHeight,tileWidth)
 	end
 
 	function self.draw()
+		for i = 1, xTiles do
+			for j = 1, yTiles do
+				love.graphics.rectangle("line", i*xSize, j*ySize, tileWidth, tileHeight )
+			end
+
+		end
 	end
 
 	function self.getIdMap()

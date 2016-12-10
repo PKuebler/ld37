@@ -18,7 +18,7 @@ function GameStage()
 	-- Lokal
 	-----------------------
 	local worldController = WorldController()
-	local worldRenderer = WorldRenderer()
+	local worldRenderer = WorldRenderer(worldController)
 
 	-----------------------
 	-- Test Daten
@@ -40,7 +40,7 @@ function GameStage()
 	end
 
 	function self.draw()
-		self.renderer.render(self.data)
+		worldRenderer.draw()
 	end
 
 	function self.stop()
