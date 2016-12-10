@@ -2,7 +2,7 @@ require("TileMap")
 
 function WorldController()
 	local self = {
-		tilemap = TileMap()
+		tilemap = TileMap(20,20,16,16)
 	}
 
 	function self.load()

@@ -1,4 +1,8 @@
 function TileMap(xSize,ySize,tileHeight,tileWidth)
+
+	local self = { 
+	}
+
 	local xTiles = xSize
 	local yTiles = ySize
 	local height = tileHeight
@@ -6,7 +10,7 @@ function TileMap(xSize,ySize,tileHeight,tileWidth)
 	local idmap = {}
 	local mapData = {}
 
-	function load()
+	function self.load()
 
 		print("tilemapLoad")
 		-- fill tilemap array
@@ -25,21 +29,21 @@ function TileMap(xSize,ySize,tileHeight,tileWidth)
 	    end 
 	end
 
-	function update()
+	function self.update()
 	end
 
-	function draw()
+	function self.draw()
 	end
 
-	function getIdMap()
+	function self.getIdMap()
 		return idmap
 	end 
 
-	function getMapData()
+	function self.getMapData()
 		return mapData
 	end 
 
-
+	return self
 end
 
 return TileMap
