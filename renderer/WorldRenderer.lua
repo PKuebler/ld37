@@ -58,6 +58,17 @@ function WorldRenderer(data,w,h)
 			end
 			lastNode = node
 		end
+
+		love.graphics.setFont(love.graphics.newFont(8))
+		for x = 0, w do
+			for y = 0, h do
+				if x == 0 then
+					love.graphics.print(y, x*16,y*16)
+				elseif y == 0 then
+					love.graphics.print(x, x*16,y*16)
+				end
+			end
+		end
 	end
 
 	return self

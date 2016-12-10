@@ -8,7 +8,7 @@ function SpriteBatch(tileW,tileH,mapW,mapH,tileset)
 	}
 
 	function self.load()
-		self.spritebatch = love.graphics.newSpriteBatch(tileset, self.size.w*self.size.h, "stream")
+		self.spritebatch = love.graphics.newSpriteBatch(tileset, (self.size.w+1)*(self.size.h+1), "stream")
 
 		self.spritebatch:clear()
 		----------------------------------
@@ -21,13 +21,16 @@ function SpriteBatch(tileW,tileH,mapW,mapH,tileset)
         ----------------------------------
 		-- Fill first one
 		----------------------------------
+		local i = 0
 		for x=0,self.size.w do
             self.idmap[x] = {}
             for y=0,self.size.h do
+            	i = i+1
                 self.spritebatch:setColor({0,0,0})
                 self.idmap[x][y] = self.spritebatch:add(self.quads[0], x*self.tileSize.w, y*self.tileSize.h)
             end 
         end
+        print(i)
         self.spritebatch:flush()
 	end
 
