@@ -4,9 +4,9 @@ function BauMenu()
 		visible = true
 	}
 
-	local x = 0
+	local x = 68
 	local y = 496
-	local width = 64
+	local width = 128
 	local height = 32
 	
 	function self.load()
@@ -16,6 +16,7 @@ function BauMenu()
 	end
 
 	function self.draw()
+		love.graphics.rectangle("fill", x, y, width, height )
 	end
 	return self
 end

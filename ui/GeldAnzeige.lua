@@ -25,7 +25,7 @@ function GeldAnzeige()
 		love.graphics.setColor(0,0,0,255)
 
 		love.graphics.print(tostring(self.cash).. " $", x+16,y+8)
-			love.graphics.setColor(255,255,255,255)
+		love.graphics.setColor(255,255,255,255)
 	end
 
 return self

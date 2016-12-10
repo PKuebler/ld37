@@ -7,12 +7,14 @@ function UiManager(aM)
 	local self = {
 		menuList = {}
 	}
+	
 	local assetManager = aM
 	local geldAnzeige = GeldAnzeige()
 	local bauMenu = BauMenu()
 
 	function self.load()
 		self.menuList[geldAnzeige.name] = geldAnzeige
+		self.menuList[bauMenu.name] = bauMenu
 	end
 
 	function self.update()
