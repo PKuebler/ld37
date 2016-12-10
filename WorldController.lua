@@ -1,12 +1,20 @@
 require("TileMap")
+
 function WorldController()
-	local tilemap = TileMap()
-	function load()
+	local self = {
+		tilemap = TileMap()
+	}
+
+	function self.load()
 		print("worldController")
-		tilemap.load()
+		self.tilemap.load()
 	end
-	function update()
+	function self.update()
 	end
-	function draw()
+	function self.draw()
 	end
+
+	return self
 end
+
+return WorldController
