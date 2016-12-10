@@ -5,7 +5,7 @@ function GameStage()
 
 local worldController = WorldController()
 local worldRenderer = WorldRenderer()
-	
+
 	local self = {
 		data = {
 			units = {}
@@ -26,6 +26,7 @@ local worldRenderer = WorldRenderer()
 		--self.renderer = Renderer()
 		--self.unitController = UnitController()
 		print("Game Start")
+		worldController.load()
 	end
 
 	function self.update(dt)
