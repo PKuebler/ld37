@@ -38,6 +38,9 @@ function UnitController(data)
 						if pathStep ~= nil then
 							-- set tween
 							obj.tween = tween.new(0.5, obj, {x = pathStep.x*self.data.tileSize, y = pathStep.y*self.data.tileSize})
+						else
+							-- finish
+							self.data.finishedUnits = self.data.finishedUnits+1
 						end
 					end
 				else

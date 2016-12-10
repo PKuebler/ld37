@@ -41,20 +41,10 @@ function WorldController(data)
 		-------------------------
 		self.puppetPlayer = PuppetPlayer(self.data)
 		self.puppetPlayer.load()
-		-- - Start Game
-		-- - Start Wave
-		-- - End Wave
-		-- - End Game
 		-------------------------
 		-- UnitController
 		-------------------------
 		self.unitcontroller = UnitController(self.data)
-		-- - Move Unit on path
-		-- - Check Automates
-		-- - Use Automates
-		-- - Get Money
-		-- - Wait
-		-- - Go Out
 		-------------------------
 	end
 
