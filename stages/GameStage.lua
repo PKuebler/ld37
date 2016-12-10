@@ -1,6 +1,11 @@
 
-
+require("WorldController")
+require("WorldRenderer")
 function GameStage()
+
+local worldController = WorldController()
+local worldRenderer = WorldRenderer()
+	
 	local self = {
 		data = {
 			units = {}
