@@ -6,9 +6,9 @@ function GeldAnzeige(theMenuId)
 	}
 
 	local x = 0
-	local y = 0
-	local width = 50
-	local height = 50
+	local y = 496
+	local width = 32
+	local height = 32
 
 	function self.load()
 		self.visible = true
