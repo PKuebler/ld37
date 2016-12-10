@@ -1,6 +1,6 @@
 
-require("WorldController")
-require("WorldRenderer")
+require("logic.WorldController")
+require("renderer.WorldRenderer")
 function GameStage()
 
 	-----------------------

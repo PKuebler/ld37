@@ -1,4 +1,4 @@
-require("TileMap")
+require("logic.TileMap")
 
 function WorldController()
 	local self = {
