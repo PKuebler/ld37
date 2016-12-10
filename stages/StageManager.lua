@@ -1,4 +1,4 @@
-function StageManager()
+function StageManager(data)
 	local self = {
 		stages = {},
 		current = nil
@@ -12,7 +12,7 @@ function StageManager()
 			self.current.stop()
 		end
 		if self.stages[name] ~= nil then
-			self.current = self.stages[name]()
+			self.current = self.stages[name](self, data)
 			self.current.start()
 		end
 	end

@@ -6,10 +6,11 @@ require("stages.GameStage")
 -- instant console
 io.stdout:setvbuf('no')
 
-local stages = StageManager(assetManager)
+local stages = StageManager({})
 
 
 function love.load()
+	love.window.setMode(25*32, 19*32, {})
 	stages.add("menu",MenuStage)
 	stages.add("game",GameStage)
 	--stages.add("game",GameStage)

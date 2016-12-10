@@ -7,8 +7,8 @@ function WorldRenderer(data,w,h)
 	-- DynamicObjects
 
 	local self = {
-		backgroundSprite = SpriteBatch(16,16,w,h,love.graphics.newImage("assets/ground.png")),
-		staticObjectSprite = SpriteBatch(16,32,w,h,love.graphics.newImage("assets/objects.png")),
+		backgroundSprite = SpriteBatch(data.tileSize,data.tileSize,false,w,h,love.graphics.newImage("assets/ground.png")),
+		staticObjectSprite = SpriteBatch(data.tileSize,data.tileSize,true,w,h,love.graphics.newImage("assets/objects.png")),
 		data = data
 	}
 
@@ -48,13 +48,17 @@ function WorldRenderer(data,w,h)
 		self.backgroundSprite.draw()
 		self.staticObjectSprite.draw()
 
+		for i,v in ipairs(self.data.dynamicObjects) do
+			love.graphics.circle( "fill", v.x+(self.data.tileSize/2), v.y+(self.data.tileSize/2), 10/2)
+		end
+
 		---------------------
-		-- Draw Path
+		-- Draw Debug
 		---------------------
 		local lastNode = nil
 		for i,node in ipairs(self.data["path"]) do
 			if lastNode ~= nil then
-				love.graphics.line(lastNode.x*16-8,lastNode.y*16-8,node.x*16-8,node.y*16-8)
+				love.graphics.line(lastNode.x*self.data.tileSize+(self.data.tileSize/2),lastNode.y*self.data.tileSize+(self.data.tileSize/2),node.x*self.data.tileSize+(self.data.tileSize/2),node.y*self.data.tileSize+(self.data.tileSize/2))
 			end
 			lastNode = node
 		end
@@ -63,9 +67,9 @@ function WorldRenderer(data,w,h)
 		for x = 0, w do
 			for y = 0, h do
 				if x == 0 then
-					love.graphics.print(y, x*16,y*16)
+					love.graphics.print(y, x*self.data.tileSize,y*self.data.tileSize)
 				elseif y == 0 then
-					love.graphics.print(x, x*16,y*16)
+					love.graphics.print(x, x*self.data.tileSize,y*self.data.tileSize)
 				end
 			end
 		end

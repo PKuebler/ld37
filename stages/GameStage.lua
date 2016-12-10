@@ -1,49 +1,45 @@
 require("logic.WorldController")
 require("renderer.WorldRenderer")
 require("ui.UiManager")
-require("assets.AssetManager")
-function GameStage()
+
+function GameStage(StageManager, data)
 
 	-----------------------
 	-- Von aussen erreichbar
 	-----------------------
 	local self = {
-		data = {
-			dynamicObjects = {},
-			map = {}
-		}
+		data = data
 	}
+	self.data.tileSize = 32
+	self.data.dynamicObjects = {}
+	self.data.map = {}
+	self.data.startPoint = {x = 0, y = 5}
+	self.data.endPoint = {x = 24, y = 15}
 
 	-----------------------
 	-- Lokal
 	-----------------------
 
-	local assetManager = AssetManager()
-
 	local worldController = WorldController(self.data)
-	local worldRenderer = WorldRenderer(self.data, 30, 30)
+	local worldRenderer = WorldRenderer(self.data, 24, 18)
 	local uiManager = nil
 
-
 	function self.start()
-		--self.renderer = Renderer()
-		--self.unitController = UnitController()
 		print("Game Start")
 		worldRenderer.load()
 		worldController.load()
-		assetManager.load()
-		uiManager = UiManager(assetManager)
-		uiManager.load()
+		--uiManager = UiManager(self.data)
+		--uiManager.load()
 	end
 
 	function self.update(dt)
+		worldController.update(dt)
 		worldRenderer.update(dt)
-		--self.unitController.update(dt, self.data)
 	end
 
 	function self.draw()
 		worldRenderer.draw()
-		uiManager.draw()
+		--uiManager.draw()
 	end
 
 	function self.stop()

@@ -1,7 +1,7 @@
 require("utils.Buttons")
 
 
-function MenuStage()
+function MenuStage(StageManager, data)
 	local self = {}
 	local buttons = ButtonManager()
 

@@ -18,7 +18,8 @@ function TileMap(data, w,h)
 					obj = nil,
 					dirty = true,
 					blocked = false,
-					orientation = 0 -- 0 = west, 1 = north, 2 = east, 3 = south
+					orientation = 0, -- 0 = west, 1 = north, 2 = east, 3 = south
+					useBy = 0 -- obj on this tile is currently used by X clients
 				}
 			end
 		end
