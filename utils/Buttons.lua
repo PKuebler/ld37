@@ -19,7 +19,7 @@ function ButtonManager()
 
 		-- love.graphics.rectangle("fill", x, y, w, h )
 	end
-
+	return self
 end
 
 return ButtonManager
