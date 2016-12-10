@@ -3,8 +3,8 @@ require("WorldController")
 require("WorldRenderer")
 function GameStage()
 
-local worldController = WorldController()
-local worldRenderer = WorldRenderer()
+	local worldController = WorldController()
+	local worldRenderer = WorldRenderer()
 
 	local self = {
 		data = {
