@@ -1,54 +1,28 @@
-function TileMap(xSize,ySize,tileHeight,tileWidth)
-
-	local self = { 
-		idmap = {},
-		mapData = {}
+function TileMap(data, w,h)
+	local self = {
+		data = data
 	}
 
-	local xTiles = xSize
-	local yTiles = ySize
-	local height = tileHeight
-	local width = tileWidth
-
-
-
-
 	function self.load()
+		-- fill array
+		for x = 0, w do
+			self.data.map[x] = {}
 
-		print("tilemapLoad")
-		-- fill tilemap array
-	    for x = 1, xTiles do
-	    	self.idmap[x] = {}
-	    	self.mapData[x] = {}
-	    	for y = 1, yTiles do
-
-			self.mapData[x][y] = {
-				sprite = 5,
-				dirty = true,
-				---------------
-				-- orientation
-				-- a = west, w = north, d = east, s = south
-				---------------
-				orientation = 's'
-			}
-	    	--idmap[x][y] = spriteBatch:add(quads[5],x*tilesize,y*tilesize)
-
-	    	end
-	    end 
-	end
-
-	function self.update()
-	end
-
-	function self.draw()
-		for i = 1, xTiles do
-			for j = 1, yTiles do
-				love.graphics.rectangle("line", i*xSize, j*ySize, tileWidth, tileHeight )
+			for y = 0, h do
+				self.data.map[x][y] = {
+					sprite = 1,
+					-- pathfinding need coords
+					x = x, 
+					y = y,
+					-- if no object on tile -> nil
+					obj = nil,
+					dirty = true,
+					blocked = false,
+					orientation = 0 -- 0 = west, 1 = north, 2 = east, 3 = south
+				}
 			end
-
 		end
 	end
-
 
 	return self
 end

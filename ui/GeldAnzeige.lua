@@ -1,8 +1,8 @@
 function GeldAnzeige(theMenuId)
-	self ={
+	local self ={
 		cash = 100,
 		menuId = theMenuId,
-		visible = false
+		visible = true
 	}
 
 	local x = 0
@@ -12,6 +12,7 @@ function GeldAnzeige(theMenuId)
 
 	function self.load()
 		self.visible = true
+		print(cash)
 	end
 
 	function self.update()

@@ -3,15 +3,14 @@ require("ui.GeldAnzeige")
 -- laedt verwaltet und blendet menu elemente ein
 function UiManager()
 
-	self = {
-		menuList = {
-		}
+	local self = {
+		menuList = {}
 	}
 
 	local geldAnzeige = GeldAnzeige(1)
 
 	function self.load()
-		menuList[geldAnzeige.menuId] = geldAnzeige
+		self.menuList[geldAnzeige.menuId] = geldAnzeige
 	end
 
 	function self.update()
