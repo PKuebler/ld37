@@ -6,7 +6,7 @@ require("stages.GameStage")
 -- instant console
 io.stdout:setvbuf('no')
 
-local stages = StageManager()
+local stages = StageManager(assetManager)
 
 
 function love.load()

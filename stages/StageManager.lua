@@ -3,7 +3,6 @@ function StageManager()
 		stages = {},
 		current = nil
 	}
-
 	function self.add(name, stage)
 		self.stages[name] = stage
 	end

@@ -1,7 +1,7 @@
 require("logic.WorldController")
 require("renderer.WorldRenderer")
 require("ui.UiManager")
-
+require("assets.AssetManager")
 function GameStage()
 
 	-----------------------
@@ -18,10 +18,11 @@ function GameStage()
 	-- Lokal
 	-----------------------
 
+	local assetManager = AssetManager()
 
 	local worldController = WorldController(self.data)
 	local worldRenderer = WorldRenderer(self.data, 30, 30)
-	local uiManager = UiManager()
+	local uiManager = nil
 
 
 	function self.start()
@@ -30,6 +31,8 @@ function GameStage()
 		print("Game Start")
 		worldRenderer.load()
 		worldController.load()
+		assetManager.load()
+		uiManager = UiManager(assetManager)
 		uiManager.load()
 	end
 
