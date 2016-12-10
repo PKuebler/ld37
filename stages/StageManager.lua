@@ -1,4 +1,3 @@
-require("utils.Buttons")
 function StageManager()
 	local self = {
 		stages = {},
