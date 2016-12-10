@@ -1,16 +1,17 @@
-
+-- stages
+require("stages.StageManager")
+require("stages.MenuStage")
 
 -- instant console
 io.stdout:setvbuf('no')
 
---local stages = StageManager()
+local stages = StageManager()
 
 function love.load()
-	--stages.add("menu",MenuStage)
+	stages.add("menu",MenuStage)
 	--stages.add("game",GameStage)
 
-	--stages.toggle("game")
-	print("alive")
+	stages.toggle("menu")
 end
 
 function love.update(dt)
