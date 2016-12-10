@@ -5,6 +5,9 @@ function WorldRenderer(controller)
 	local worldController = controller
 	function self.load()
 	end
+
+	function self.update()
+	end
 	
 	function self.draw()
 		worldController.tilemap.draw()
