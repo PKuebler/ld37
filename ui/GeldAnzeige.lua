@@ -1,7 +1,7 @@
-function GeldAnzeige(theMenuId,font)
+function GeldAnzeige()
 	local self ={
 		cash = 100,
-		menuId = theMenuId,
+		name = "geld",
 		visible = true
 	}
 
@@ -9,18 +9,17 @@ function GeldAnzeige(theMenuId,font)
 	local y = 496
 	local width = 64
 	local height = 32
-	local font = font
+
 
 	function self.load()
 		self.visible = true
 
-		print(font)
 	end
 
 	function self.update()
 	end
 
-	function self.draw()
+	function self.draw(font)
 		love.graphics.rectangle("fill", x, y, width, height )
 		love.graphics.setFont(font)
 		love.graphics.setColor(0,0,0,255)
