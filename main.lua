@@ -14,7 +14,7 @@ function love.load()
 	stages.add("game",GameStage)
 	--stages.add("game",GameStage)
 
-	stages.toggle("menu")
+	stages.toggle("game")
 end
 
 function love.update(dt)

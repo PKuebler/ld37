@@ -13,6 +13,7 @@ function ButtonManager()
 	function self.draw()
 
 		for k, v in pairs(self.buttons) do
+			love.graphics.rectangle("line",v.x,v.y,v.w,v.h)
 		end
 
 		-- love.graphics.rectangle("fill", x, y, w, h )
