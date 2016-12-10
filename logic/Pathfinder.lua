@@ -1,3 +1,5 @@
+require("utils.AStar")
+
 function Pathfinder(mapData)
 	local self = {
 		mapData = mapData,
@@ -17,7 +19,6 @@ function Pathfinder(mapData)
 			if nodes[x] ~= nil and nodes[x][y] ~= nil and theNode ~= nodes[x][y] and nodes[x][y].blocked == false then
 				-- todo ist betrettbar
 				table.insert ( neighbors, nodes[x][y] )
-				print(x,y)
 			end
 		end
 
@@ -33,7 +34,7 @@ function Pathfinder(mapData)
 	-- Suche Path, return nil if no path
 	---------------------------------
 	function self.getPath(startX,startY,endX,endY)
-		return astar.path(self.mapData[1][1],self.mapData[20][20],self.mapData,self.noCache,get_neighbors)
+		return astar.path(self.mapData[startX][startY],self.mapData[endX][endY],self.mapData,self.noCache,get_neighbors)
 	end
 
 	return self

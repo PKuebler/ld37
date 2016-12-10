@@ -1,6 +1,6 @@
-
 require("logic.WorldController")
 require("renderer.WorldRenderer")
+
 function GameStage()
 
 	-----------------------
@@ -8,34 +8,27 @@ function GameStage()
 	-----------------------
 	local self = {
 		data = {
-			units = {}
-		}--,
-		--renderer = nil,
-		--unitController = nil
+			dynamicObjects = {},
+			map = {}
+		}
 	}
 
 	-----------------------
 	-- Lokal
 	-----------------------
-	local worldController = WorldController()
-	local worldRenderer = WorldRenderer(worldController)
-
-	-----------------------
-	-- Test Daten
-	-----------------------
-	self.data.units[#self.data.units+1] = {
-		x = 10,
-		y = 10
-	}
+	local worldController = WorldController(self.data)
+	local worldRenderer = WorldRenderer(self.data, 30, 30)
 
 	function self.start()
 		--self.renderer = Renderer()
 		--self.unitController = UnitController()
 		print("Game Start")
+		worldRenderer.load()
 		worldController.load()
 	end
 
 	function self.update(dt)
+		worldRenderer.update(dt)
 		--self.unitController.update(dt, self.data)
 	end
 
