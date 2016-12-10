@@ -4,6 +4,7 @@ self = {
 	
 }
 
+local batch = love.graphics.newSpriteBatch()
 
 	function self.load()
 	end
