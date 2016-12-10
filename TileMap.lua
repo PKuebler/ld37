@@ -1,14 +1,15 @@
 function TileMap(xSize,ySize,tileHeight,tileWidth)
 
 	local self = { 
+		idmap = {},
+		mapData = {}
 	}
 
 	local xTiles = xSize
 	local yTiles = ySize
 	local height = tileHeight
 	local width = tileWidth
-	local idmap = {}
-	local mapData = {}
+
 
 
 
@@ -17,14 +18,17 @@ function TileMap(xSize,ySize,tileHeight,tileWidth)
 		print("tilemapLoad")
 		-- fill tilemap array
 	    for x = 1, xTiles do
-	    	idmap[x] = {}
-	    	mapData[x] = {}
+	    	self.idmap[x] = {}
+	    	self.mapData[x] = {}
 	    	for y = 1, yTiles do
 
-			mapData[x][y] = {
+			self.mapData[x][y] = {
 				sprite = 5,
 				dirty = true,
+				---------------
+				-- orientation
 				-- a = west, w = north, d = east, s = south
+				---------------
 				orientation = 's'
 			}
 	    	--idmap[x][y] = spriteBatch:add(quads[5],x*tilesize,y*tilesize)
@@ -45,13 +49,6 @@ function TileMap(xSize,ySize,tileHeight,tileWidth)
 		end
 	end
 
-	function self.getIdMap()
-		return idmap
-	end 
-
-	function self.getMapData()
-		return mapData
-	end 
 
 	return self
 end
