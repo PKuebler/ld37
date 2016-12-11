@@ -55,13 +55,11 @@ function MenuStage(StageManager, data)
 	end
 
 	function self.draw()
-		love.graphics.push()
-		love.graphics.setFont(love.graphics.newFont(40))
+		love.graphics.setFont(self.data.assets.font40)
 		love.graphics.setColor(255,255,255,255)
 		love.graphics.print("Menu", 100,50)
 		
 		love.graphics.rectangle("fill", 100, 110, 50, 5)
-		love.graphics.pop()
 
 		-- render btnmnger
 		uiManager.draw()

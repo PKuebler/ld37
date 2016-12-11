@@ -47,7 +47,7 @@ function ButtonUI(func)
 		if self.borderTop ~= nil then
 			h = h+5
 		end
-		love.graphics.setFont(love.graphics.newFont(16))
+		love.graphics.setFont(self.data.assets.font16)
 		love.graphics.print(self.text, 15,h)
 
 		if self.borderTop ~= nil and self.hover then

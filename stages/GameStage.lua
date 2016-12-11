@@ -18,6 +18,7 @@ function GameStage(StageManager, data)
 	self.data.map = {}
 	self.data.startPoint = {x = 0, y = 5}
 	self.data.endPoint = {x = 24, y = 15}
+	self.data.play = true
 
 	-----------------------
 	-- Lokal
@@ -41,19 +42,28 @@ function GameStage(StageManager, data)
 	end
 
 	function self.update(dt)
-		worldController.update(dt)
-		worldRenderer.update(dt)
-		uiManager.update(dt)
-		inputController.update(dt)
+		if self.data.play == true then
+			worldController.update(dt)
+			worldRenderer.update(dt)
+			uiManager.update(dt)
+			inputController.update(dt)
+		end
 	end
 
 	function self.draw()
-		love.graphics.setFont(love.graphics.newFont(40))
-		love.graphics.setColor(19,24,39,255)
-		love.graphics.rectangle("fill", 0, love.graphics.getHeight()-(self.data.tileSize*3), love.graphics.getWidth(), self.data.tileSize*3)
+		if self.data.play == true then
+			love.graphics.setFont(self.data.assets.font40)
+			love.graphics.setColor(19,24,39,255)
+			love.graphics.rectangle("fill", 0, love.graphics.getHeight()-(self.data.tileSize*3), love.graphics.getWidth(), self.data.tileSize*3)
 
-		worldRenderer.draw()
-		uiManager.draw()
+			worldRenderer.draw()
+			uiManager.draw()
+			inputController.draw()
+			love.graphics.setFont(self.data.assets.font12)
+			love.graphics.printf("units "..table.getn(self.data.dynamicObjects), love.graphics.getWidth()-205, 130, 200, "right")
+		else
+
+		end
 	end
 
 	function self.stop()

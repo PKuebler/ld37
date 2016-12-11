@@ -7,8 +7,8 @@ function WorldRenderer(data,w,h)
 	-- DynamicObjects
 
 	local self = {
-		backgroundSprite = SpriteBatch(data.tileSize,data.tileSize,false,w,h,love.graphics.newImage("assets/ground.png")),
-		staticObjectSprite = SpriteBatch(data.tileSize,data.tileSize,true,w,h,love.graphics.newImage("assets/objects.png")),
+		backgroundSprite = SpriteBatch(data.tileSize,data.tileSize,false,w,h,data.assets.ground),
+		staticObjectSprite = SpriteBatch(data.tileSize,data.tileSize,true,w,h,data.assets.objects),
 		data = data
 	}
 
@@ -54,6 +54,11 @@ function WorldRenderer(data,w,h)
 			love.graphics.rectangle("fill", v.x+(self.data.tileSize/2), v.y+(self.data.tileSize/2)-10, 5, 10)
 		end
 
+		if self.data.isWave == false then
+			love.graphics.setFont(self.data.assets.font40)
+			love.graphics.print("Next Wave "..math.floor(self.data.nextWave),love.graphics.getWidth()/3,40)
+		end
+
 		---------------------
 		-- Draw Debug
 		---------------------
@@ -65,7 +70,7 @@ function WorldRenderer(data,w,h)
 			lastNode = node
 		end
 
-		love.graphics.setFont(love.graphics.newFont(8))
+		love.graphics.setFont(self.data.assets.font8)
 		for x = 0, w do
 			for y = 0, h do
 				if x == 0 then

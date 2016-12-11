@@ -7,11 +7,11 @@ function ScrollTextUI(text)
 		func = func,
 		text = "",
 		scroll = 1,
-		fontSize = 12,
 		lineHeight = 18
 	}
 
 	function self.load(data)
+		self.data = data
 		self.addText(text)
 	end
 
@@ -28,7 +28,7 @@ function ScrollTextUI(text)
 
 	function self.draw()
 		love.graphics.push()
-		love.graphics.setFont(love.graphics.newFont(self.fontSize))
+		love.graphics.setFont(self.data.assets.font12)
 
 		local lines = math.floor(self.h/self.lineHeight)
 

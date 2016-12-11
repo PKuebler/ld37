@@ -5,6 +5,14 @@ function UnitController(data)
 		data = data
 	}
 
+	function self.pathUpdate()
+		for i, obj in ipairs(self.data.dynamicObjects) do
+			if obj.finished == nil and obj.tween ~= nil then
+				obj.tween = nil
+			end
+		end
+	end
+
 	function self.update(dt)
 		for i, obj in ipairs(self.data.dynamicObjects) do
 			if obj.finished == nil then
@@ -30,6 +38,7 @@ function UnitController(data)
 							-- set tween
 							obj.tween = tween.new(0.5, obj, {x = neighbor.x*self.data.tileSize, y = neighbor.y*self.data.tileSize})
 							-- set last use
+							obj.lastLastUse = obj.lastUse
 							obj.lastUse = neighbor
 						else
 							-- no neighbor
@@ -64,7 +73,7 @@ function UnitController(data)
 					-- set tween
 					obj.tween = tween.new(0.5, obj, {x = pathStep.x*self.data.tileSize, y = pathStep.y*self.data.tileSize})
 					-- unblock
-					obj.lastUse.useBy = obj.lastUse.useBy-1
+					obj.lastUse.useBy = math.max(0,obj.lastUse.useBy-1)
 					-- remove playtime
 					obj.playtime = nil
 					-- money
@@ -95,6 +104,10 @@ function UnitController(data)
 
 			-- if neighbor not last use
 			if obj.lastUse ~= nil and obj.lastUse == self.data.map[bX][bY] then
+				return
+			end
+
+			if obj.lastLastUse ~= nil and obj.lastLastUse == self.data.map[bX][bY] then
 				return
 			end
 

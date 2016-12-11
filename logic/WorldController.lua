@@ -16,6 +16,9 @@ function WorldController(data)
 
 	function self.pathUpdate()
 		self.data["path"] = self.pathfinder.getPath(self.data.startPoint.x,self.data.startPoint.y,self.data.endPoint.x,self.data.endPoint.y)
+		if self.unitcontroller then
+			self.unitcontroller.pathUpdate()
+		end
 	end
 
 	function self.load()
