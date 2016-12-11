@@ -4,6 +4,8 @@ function TileMap(data, w,h)
 	}
 
 	function self.load()
+		self.data.mapSize = { w = w, h = h }
+
 		-- fill array
 		for x = 0, w do
 			self.data.map[x] = {}

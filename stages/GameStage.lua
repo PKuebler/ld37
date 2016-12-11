@@ -12,7 +12,7 @@ function GameStage(StageManager, data)
 	local self = {
 		data = data
 	}
-	self.data.money = 0
+	self.data.money = 50
 	self.data.tileSize = 32
 	self.data.dynamicObjects = {}
 	self.data.map = {}
@@ -37,7 +37,7 @@ function GameStage(StageManager, data)
 		-- UI
 		----------------------
 		uiManager = UiManager(self.data)
-		inputController = InputController(self.data, uiManager)
+		inputController = InputController(self.data, uiManager, worldController)
 	end
 
 	function self.update(dt)
@@ -63,6 +63,7 @@ function GameStage(StageManager, data)
 
 	function self.mousereleased( x, y, button, istouch )
 		uiManager.mousereleased( x, y, button, istouch )
+		inputController.mousereleased( x, y, button, istouch )
 	end
 
 	return self

@@ -1,6 +1,7 @@
-function InputController(data, ui)
+function InputController(data, ui, worldController)
 	local self = {
-		data = data
+		data = data,
+		factory = nil
 	}
 
 	--------------------
@@ -29,7 +30,7 @@ function InputController(data, ui)
 		b.color = {85,96,110}
 		b.borderTop = {233,212,120}
 		b.func = function()
-			print("klick")
+			self.factory = v
 		end
 		ui.add(k.."-btn", b)
 		ui.open(k.."-btn")
@@ -37,6 +38,23 @@ function InputController(data, ui)
 	end
 
 	function self.update(dt)
+	end
+
+	function self.mousereleased( x, y, button, istouch )
+		if button == 2 and self.factory ~= nil then
+			self.factory = nil
+		elseif self.factory ~= nil then
+			local tx = math.floor(x/self.data.tileSize)
+			local ty = math.floor(y/self.data.tileSize)
+
+			if tx <= self.data.mapSize.w and ty <= self.data.mapSize.h and self.factory.buildcosts <= self.data.money then
+				self.data.money = math.max(0,self.data.money-self.factory.buildcosts)
+				self.data.map[tx][ty].obj = self.factory
+				self.data.map[tx][ty].blocked = true
+				self.data.map[tx][ty].dirty = true
+				worldController.pathUpdate()
+			end
+		end
 	end
 
 	return self

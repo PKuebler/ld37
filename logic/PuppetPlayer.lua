@@ -15,9 +15,10 @@ function PuppetPlayer(data)
 
 	function self.update(dt)
 		-- finish?
-		if self.data.finishedUnits == 10 then
+		if self.data.isWave == true and self.data.finishedUnits == 10 then
 			self.data.isWave = false
 			self.data.waves = self.data.waves+1
+			self.data.dynamicObjects = {}
 		end
 
 		if self.data.isWave == false then

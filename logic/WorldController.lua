@@ -6,7 +6,7 @@ require("logic.UnitController")
 function WorldController(data)
 	local self = {
 		data = data,
-		tilemap = TileMap(data, 30, 30),
+		tilemap = TileMap(data, 24, 15),
 		pathfinder = nil,
 		puppetPlayer = nil,
 		unitcontroller = nil
@@ -14,21 +14,16 @@ function WorldController(data)
 
 	self.data.factory = require("logic.Factory")
 
+	function self.pathUpdate()
+		self.data["path"] = self.pathfinder.getPath(self.data.startPoint.x,self.data.startPoint.y,self.data.endPoint.x,self.data.endPoint.y)
+	end
+
 	function self.load()
 		-------------------------
 		-- Init Tilemap
 		-- - Fill self.data.map Array
 		-------------------------
 		self.tilemap.load()
-		-- DEBUG
-		self.data.map[6][self.data.startPoint.y].obj = self.data.factory.oneArmedBandit
-		self.data.map[6][self.data.startPoint.y].blocked = true
-		self.data.map[7][self.data.startPoint.y].obj = self.data.factory.bench
-		self.data.map[7][self.data.startPoint.y].blocked = true
-		self.data.map[6][self.data.startPoint.y-1].obj = self.data.factory.easycash
-		self.data.map[6][self.data.startPoint.y-1].blocked = true
-		self.data.map[6][self.data.startPoint.y-2].obj = self.data.factory.digitalBandit
-		self.data.map[6][self.data.startPoint.y-2].blocked = true
 
 		-------------------------
 		-- Pathfinder
@@ -36,7 +31,7 @@ function WorldController(data)
 		self.pathfinder = Pathfinder(self.data.map)
 		self.data["path"] = nil
 		-- calc first route
-		self.data["path"] = self.pathfinder.getPath(self.data.startPoint.x,self.data.startPoint.y,self.data.endPoint.x,self.data.endPoint.y)
+		self.pathUpdate()
 		-------------------------
 		-- Puppenspieler
 		-------------------------

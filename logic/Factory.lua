@@ -2,7 +2,7 @@ return {
 	easycash = {
 		name = "easycash",
 		usetime = 5, -- sekunden
-		buildcosts = 20, -- baukosten
+		buildcosts = 100, -- baukosten
 		money = 5, -- positive zahl adiert charakter geld, negative zieht ab und addiert zu konto
 		sprite = 20,
 		space = 1
@@ -10,10 +10,10 @@ return {
 	bench = {
 		name = "bench",
 		usetime = 5,
-		buildcosts = 10,
+		buildcosts = 20,
 		money = 0,
 		sprite = 8,
-		space = 1
+		space = 2
 	},
 	chair = {
 		name = "chair",
@@ -26,7 +26,7 @@ return {
 	oneArmedBandit = {
 		name = "oneArmedBandit",
 		usetime = 10,
-		buildcosts = 20,
+		buildcosts = 30,
 		money = -10,
 		sprite = 12,
 		space = 1
@@ -34,7 +34,7 @@ return {
 	digitalBandit = {
 		name = "digitalBandit",
 		usetime = 15,
-		buildcosts = 50,
+		buildcosts = 80,
 		money = -20,
 		sprite = 16,
 		space = 1

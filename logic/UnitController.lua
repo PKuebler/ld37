@@ -7,66 +7,75 @@ function UnitController(data)
 
 	function self.update(dt)
 		for i, obj in ipairs(self.data.dynamicObjects) do
-			-- if finish and no playtime -> get next pathStep
-				-- automat
-				-- path
-			if (obj.tween == nil or obj.tween:update(dt)) and obj.playtime == nil then
-				-- reset movement
-				obj.tween = nil
+			if obj.finished == nil then
+				-- if finish and no playtime -> get next pathStep
+					-- automat
+					-- path
+				if (obj.tween == nil or obj.tween:update(dt)) and obj.playtime == nil then
+					-- reset movement
+					obj.tween = nil
 
-				-- if finish on object or path
-				local currentPath = self.data.path[obj.pathStep]
-				if currentPath == nil then
-					-- finish
-				elseif currentPath.x*self.data.tileSize == obj.x and currentPath.y*self.data.tileSize == obj.y then
-					-- finish move to path
+					-- if finish on object or path
+					local currentPath = self.data.path[obj.pathStep]
+					if currentPath == nil then
+						-- finish
+					elseif currentPath.x*self.data.tileSize == obj.x and currentPath.y*self.data.tileSize == obj.y then
+						-- finish move to path
 
-					-- get free automat, bank, ...
-					local neighbor = self.getFreeNeighborObject(obj)
-					if neighbor ~= nil and obj.money > 0 then
-						-- block neighbor
-						neighbor.useBy = neighbor.useBy+1
-						-- set tween
-						obj.tween = tween.new(0.5, obj, {x = neighbor.x*self.data.tileSize, y = neighbor.y*self.data.tileSize})
-						-- set last use
-						obj.lastUse = neighbor
-					else
-						-- no neighbor
-						-- go to next path step
-						obj.pathStep = obj.pathStep+1
-						local pathStep = self.data.path[obj.pathStep]
-						if pathStep ~= nil then
+						-- get free automat, bank, ...
+						local neighbor = self.getFreeNeighborObject(obj)
+						if neighbor ~= nil and obj.money > 0 then
+							-- block neighbor
+							neighbor.useBy = neighbor.useBy+1
 							-- set tween
-							obj.tween = tween.new(0.5, obj, {x = pathStep.x*self.data.tileSize, y = pathStep.y*self.data.tileSize})
+							obj.tween = tween.new(0.5, obj, {x = neighbor.x*self.data.tileSize, y = neighbor.y*self.data.tileSize})
+							-- set last use
+							obj.lastUse = neighbor
 						else
-							-- finish
-							self.data.finishedUnits = self.data.finishedUnits+1
+							-- no neighbor
+							-- go to next path step
+							obj.pathStep = obj.pathStep+1
+							local pathStep = self.data.path[obj.pathStep]
+							if pathStep ~= nil then
+								-- set tween
+								obj.tween = tween.new(0.5, obj, {x = pathStep.x*self.data.tileSize, y = pathStep.y*self.data.tileSize})
+							else
+								-- finish
+								self.data.finishedUnits = self.data.finishedUnits+1
+								obj.finished = true
+							end
 						end
+					elseif obj.lastUse == nil then
+						-- path update
+						-- go back to path
+						local pathStep = self.data.path[obj.pathStep]
+						-- set tween
+						obj.tween = tween.new(0.5, obj, {x = pathStep.x*self.data.tileSize, y = pathStep.y*self.data.tileSize})
+					else
+						-- finish move to object
+						-- start playtime
+						obj.playtime = obj.lastUse.obj.usetime
 					end
-				else
-					-- finish move to object
-					-- start playtime
-					obj.playtime = obj.lastUse.obj.usetime
 				end
-			end
 
-			if obj.playtime == 0 then
-				-- go back to path
-				local pathStep = self.data.path[obj.pathStep]
-				-- set tween
-				obj.tween = tween.new(0.5, obj, {x = pathStep.x*self.data.tileSize, y = pathStep.y*self.data.tileSize})
-				-- unblock
-				obj.lastUse.useBy = obj.lastUse.useBy-1
-				-- remove playtime
-				obj.playtime = nil
-				-- money
-				obj.money = obj.money+obj.lastUse.obj.money
-				-- world money (reverse factory)
-				if obj.lastUse.obj.money < 0 then
-					self.data.money = self.data.money-obj.lastUse.obj.money
+				if obj.playtime == 0 then
+					-- go back to path
+					local pathStep = self.data.path[obj.pathStep]
+					-- set tween
+					obj.tween = tween.new(0.5, obj, {x = pathStep.x*self.data.tileSize, y = pathStep.y*self.data.tileSize})
+					-- unblock
+					obj.lastUse.useBy = obj.lastUse.useBy-1
+					-- remove playtime
+					obj.playtime = nil
+					-- money
+					obj.money = obj.money+obj.lastUse.obj.money
+					-- world money (reverse factory)
+					if obj.lastUse.obj.money < 0 then
+						self.data.money = self.data.money-obj.lastUse.obj.money
+					end
+				elseif obj.playtime ~= nil then
+					obj.playtime = math.max(0,obj.playtime - dt)
 				end
-			elseif obj.playtime ~= nil then
-				obj.playtime = math.max(0,obj.playtime - dt)
 			end
 		end
 	end
