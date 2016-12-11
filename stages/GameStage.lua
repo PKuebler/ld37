@@ -10,6 +10,7 @@ function GameStage(StageManager, data)
 	local self = {
 		data = data
 	}
+	self.data.money = 0
 	self.data.tileSize = 32
 	self.data.dynamicObjects = {}
 	self.data.map = {}

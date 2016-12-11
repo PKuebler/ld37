@@ -23,7 +23,7 @@ function UnitController(data)
 
 					-- get free automat, bank, ...
 					local neighbor = self.getFreeNeighborObject(obj)
-					if neighbor ~= nil then
+					if neighbor ~= nil and obj.money > 0 then
 						-- block neighbor
 						neighbor.useBy = neighbor.useBy+1
 						-- set tween
@@ -59,6 +59,12 @@ function UnitController(data)
 				obj.lastUse.useBy = obj.lastUse.useBy-1
 				-- remove playtime
 				obj.playtime = nil
+				-- money
+				obj.money = obj.money+obj.lastUse.obj.money
+				-- world money (reverse factory)
+				if obj.lastUse.obj.money < 0 then
+					self.data.money = self.data.money-obj.lastUse.obj.money
+				end
 			elseif obj.playtime ~= nil then
 				obj.playtime = math.max(0,obj.playtime - dt)
 			end
