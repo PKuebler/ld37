@@ -7,11 +7,12 @@ function WorldController(data)
 	local self = {
 		data = data,
 		tilemap = TileMap(data, 30, 30),
-		factory = require("logic.Factory"),
 		pathfinder = nil,
 		puppetPlayer = nil,
 		unitcontroller = nil
 	}
+
+	self.data.factory = require("logic.Factory")
 
 	function self.load()
 		-------------------------
@@ -20,13 +21,13 @@ function WorldController(data)
 		-------------------------
 		self.tilemap.load()
 		-- DEBUG
-		self.data.map[6][self.data.startPoint.y].obj = self.factory.oneArmedBandit
+		self.data.map[6][self.data.startPoint.y].obj = self.data.factory.oneArmedBandit
 		self.data.map[6][self.data.startPoint.y].blocked = true
-		self.data.map[7][self.data.startPoint.y].obj = self.factory.bench
+		self.data.map[7][self.data.startPoint.y].obj = self.data.factory.bench
 		self.data.map[7][self.data.startPoint.y].blocked = true
-		self.data.map[6][self.data.startPoint.y-1].obj = self.factory.easycash
+		self.data.map[6][self.data.startPoint.y-1].obj = self.data.factory.easycash
 		self.data.map[6][self.data.startPoint.y-1].blocked = true
-		self.data.map[6][self.data.startPoint.y-2].obj = self.factory.digitalBandit
+		self.data.map[6][self.data.startPoint.y-2].obj = self.data.factory.digitalBandit
 		self.data.map[6][self.data.startPoint.y-2].blocked = true
 
 		-------------------------

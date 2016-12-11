@@ -45,6 +45,8 @@ function WorldRenderer(data,w,h)
 			return
 		end
 
+		love.graphics.setColor(255,255,255,255)
+
 		self.backgroundSprite.draw()
 		self.staticObjectSprite.draw()
 

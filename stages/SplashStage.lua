@@ -30,6 +30,9 @@ function SplashStage(StageManager, data)
 	function self.stop()
 	end
 
+	function self.mousereleased( x, y, button, istouch )
+	end
+
 	return self
 end
 

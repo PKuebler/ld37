@@ -1,7 +1,8 @@
 require("ui.UiManager")
 require("ui.ButtonUI")
+require("ui.ScrollTextUI")
 
-function MenuStage(StageManager, data)
+function CreditsStage(StageManager, data)
 	local self = {
 		data = data
 	}
@@ -12,45 +13,34 @@ function MenuStage(StageManager, data)
 		uiManager = UiManager(self.data)
 
 		----------------------------------
-		-- Start Game
+		-- Zurück
 		----------------------------------
 		local g = ButtonUI()
-		g.y = 200
+		g.y = love.graphics.getHeight()-80
 		g.x = 100
-		g.text = "Start"
+		g.text = "Back"
 		g.func = function()
-			StageManager.toggle("game")
+			StageManager.toggle("menu")
 		end
-		uiManager.add("start", g)
-		uiManager.open("start")
+		uiManager.add("menu", g)
+		uiManager.open("menu")
 		----------------------------------
 		-- Credits
 		----------------------------------
-		local c = ButtonUI()
-		c.y = 250
-		c.x = 100
-		c.text = "Credits"
-		c.func = function()
-			StageManager.toggle("credits")
+		local text = ""
+		for line in love.filesystem.lines("assets/credits.txt") do
+			text = text..line.."\n"
 		end
-		uiManager.add("credits", c)
-		uiManager.open("credits")
-		----------------------------------
-		-- Options?
-		----------------------------------
-		local o = ButtonUI()
-		o.y = 300
-		o.x = 100
-		o.func = function()
-			StageManager.toggle("options")
-		end
-		uiManager.add("options", o)
---		uiManager.open("options")
-
+		local s = ScrollTextUI(text)
+		s.y = 150
+		s.x = 100
+		s.w = love.graphics.getWidth()-150
+		s.h = love.graphics.getHeight()-250
+		uiManager.add("scroll", s)
+		uiManager.open("scroll")
 	end
 
 	function self.update(dt)
-		-- updatemnger
 		uiManager.update(dt)
 	end
 
@@ -58,12 +48,11 @@ function MenuStage(StageManager, data)
 		love.graphics.push()
 		love.graphics.setFont(love.graphics.newFont(40))
 		love.graphics.setColor(255,255,255,255)
-		love.graphics.print("Menu", 100,50)
+		love.graphics.print("Credits", 100,50)
 		
 		love.graphics.rectangle("fill", 100, 110, 50, 5)
 		love.graphics.pop()
-
-		-- render btnmnger
+		
 		uiManager.draw()
 	end
 
@@ -75,7 +64,11 @@ function MenuStage(StageManager, data)
 		uiManager.mousereleased( x, y, button, istouch )
 	end
 
+	function self.wheelmoved(x,y)
+		uiManager.wheelmoved(x,y)
+	end
+
 	return self
 end
 
-return MenuStage
+return CreditsStage
