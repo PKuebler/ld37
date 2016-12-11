@@ -60,6 +60,8 @@ function MenuStage(StageManager, data)
 		love.graphics.print("Menu", 100,50)
 		
 		love.graphics.rectangle("fill", 100, 110, 50, 5)
+		love.graphics.setFont(self.data.assets.font16)
+		love.graphics.printf("The Casino gives you a room to prove yourself (worthly), and make the best out of it and maybe you will soon have your own casino", 100, 400, 400)
 
 		-- render btnmnger
 		uiManager.draw()
