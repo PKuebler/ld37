@@ -3,9 +3,9 @@ LudumDare 37
 Team
 =====================
 
-Daniel Möck
-Michael Seids
 Philipp Kübler
+Michael Seitz
+Daniel Möck
 
 Third-party licenses
 =====================
