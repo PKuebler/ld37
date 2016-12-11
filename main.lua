@@ -4,11 +4,14 @@ require("stages.MenuStage")
 require("stages.GameStage")
 require("stages.SplashStage")
 require("stages.CreditsStage")
+require("renderer.Audio")
 
 -- instant console
 io.stdout:setvbuf('no')
 
-local stages = StageManager({assets = {}})
+local data = {assets = {}}
+data.audio = Audio(data)
+local stages = StageManager(data)
 
 
 function love.load()

@@ -16,14 +16,13 @@ function GameStage(StageManager, data)
 	self.data.tileSize = 32
 	self.data.dynamicObjects = {}
 	self.data.map = {}
-	self.data.startPoint = {x = 0, y = 5}
-	self.data.endPoint = {x = 24, y = 15}
+	self.data.startPoint = {x = 0, y = love.math.random(3,13)}
+	self.data.endPoint = {x = 24, y = love.math.random(3,13)}
 	self.data.play = true
 
 	-----------------------
 	-- Lokal
 	-----------------------
-
 	local worldController = WorldController(self.data)
 	local worldRenderer = WorldRenderer(self.data, 24, 15)
 	local uiManager = nil

@@ -15,6 +15,7 @@ function SplashStage(StageManager, data)
 
 		loader.newImage(data.assets, 'ground', 'assets/ground.png')
 		loader.newImage(data.assets, 'objects', 'assets/objects.png')
+		loader.newSource(data.assets, 'bgmusic', 'assets/CasinoRoyale.mp3')
 		loader.start(function()
 			self.finishedLoading = true
 		end)
@@ -24,6 +25,7 @@ function SplashStage(StageManager, data)
 		if not self.finishedLoading then
 			loader.update()
 		else
+			data.audio.start()
 			StageManager.toggle('menu')
 		end
 	end

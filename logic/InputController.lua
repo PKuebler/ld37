@@ -42,11 +42,19 @@ function InputController(data, ui, worldController)
 
 	function self.update(dt)
 		if self.build ~= nil then
-			self.data.money = math.max(0,self.data.money-self.factory.buildcosts)
 			self.data.map[self.build.x][self.build.y].obj = self.factory
 			self.data.map[self.build.x][self.build.y].blocked = true
-			self.data.map[self.build.x][self.build.y].dirty = true
-			worldController.pathUpdate()
+
+			if worldController.checkPath() ~= nil then
+				worldController.pathUpdate()
+	
+				self.data.map[self.build.x][self.build.y].dirty = true
+	
+				self.data.money = math.max(0,self.data.money-self.factory.buildcosts)
+			else
+				self.data.map[self.build.x][self.build.y].obj = nil
+				self.data.map[self.build.x][self.build.y].blocked = false
+			end
 			self.factory = nil
 			self.build = nil
 		end

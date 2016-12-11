@@ -14,8 +14,11 @@ function WorldController(data)
 
 	self.data.factory = require("logic.Factory")
 
+	function self.checkPath()
+		return self.pathfinder.getPath(self.data.startPoint.x,self.data.startPoint.y,self.data.endPoint.x,self.data.endPoint.y)
+	end
 	function self.pathUpdate()
-		self.data["path"] = self.pathfinder.getPath(self.data.startPoint.x,self.data.startPoint.y,self.data.endPoint.x,self.data.endPoint.y)
+		self.data["path"] = self.checkPath()
 		if self.unitcontroller then
 			self.unitcontroller.pathUpdate()
 		end

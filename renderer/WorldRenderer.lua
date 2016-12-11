@@ -69,17 +69,6 @@ function WorldRenderer(data,w,h)
 			end
 			lastNode = node
 		end
-
-		love.graphics.setFont(self.data.assets.font8)
-		for x = 0, w do
-			for y = 0, h do
-				if x == 0 then
-					love.graphics.print(y, x*self.data.tileSize,y*self.data.tileSize)
-				elseif y == 0 then
-					love.graphics.print(x, x*self.data.tileSize,y*self.data.tileSize)
-				end
-			end
-		end
 	end
 
 	return self
