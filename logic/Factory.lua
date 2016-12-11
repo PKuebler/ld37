@@ -3,7 +3,7 @@ return {
 		name = "easycash",
 		usetime = 5, -- sekunden
 		buildcosts = 100, -- baukosten
-		money = 5, -- positive zahl adiert charakter geld, negative zieht ab und addiert zu konto
+		money = 10, -- positive zahl adiert charakter geld, negative zieht ab und addiert zu konto
 		sprite = 20,
 		space = 1
 	},

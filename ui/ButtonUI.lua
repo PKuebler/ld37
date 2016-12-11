@@ -24,11 +24,11 @@ function ButtonUI(func)
 	end
 
 	function self.getSize(text)
-		return love.graphics.getFont():getWidth(text)+30
+		return love.graphics.getFont():getWidth(text)+40
 	end
 
 	function self.update(dt)
-		self.w = love.graphics.getFont():getWidth(self.text)+30
+		self.w = love.graphics.getFont():getWidth(self.text)+40
 	end
 
 	function self.draw()

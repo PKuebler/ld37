@@ -11,14 +11,16 @@ function PuppetPlayer(data)
 		self.data.nextUnit = 0
 		self.data.sendUnits = 0
 		self.data.finishedUnits = 0
+		self.data.nextWaveUnits = 5
 	end
 
 	function self.update(dt)
 		-- finish?
-		if self.data.isWave == true and self.data.finishedUnits == 10 then
+		if self.data.isWave == true and self.data.finishedUnits == self.data.nextWaveUnits then
 			self.data.isWave = false
 			self.data.waves = self.data.waves+1
 			self.data.dynamicObjects = {}
+			self.data.nextWaveUnits = math.floor(self.data.nextWaveUnits*1.5)
 		end
 
 		if self.data.isWave == false then
@@ -33,7 +35,7 @@ function PuppetPlayer(data)
 				self.data.finishedUnits = 0
 				self.data.nextWave = 10
 			end
-		elseif self.data.sendUnits < 10 and self.data.nextUnit > 1 then
+		elseif self.data.sendUnits < self.data.nextWaveUnits and self.data.nextUnit > 1 then
 			self.data.sendUnits = self.data.sendUnits+1
 			self.data.nextUnit = 0
 	
@@ -44,7 +46,7 @@ function PuppetPlayer(data)
 				pathStep = 1,
 				money = 100
 			}
-		elseif self.data.sendUnits < 10 and self.data.nextUnit <= 1 then
+		elseif self.data.sendUnits < self.data.nextWaveUnits and self.data.nextUnit <= 1 then
 			self.data.nextUnit = self.data.nextUnit+dt
 		end
 	end

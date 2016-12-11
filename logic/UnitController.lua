@@ -32,7 +32,7 @@ function UnitController(data)
 
 						-- get free automat, bank, ...
 						local neighbor = self.getFreeNeighborObject(obj)
-						if neighbor ~= nil and obj.money > 0 then
+						if neighbor ~= nil and (obj.money > 0 or neighbor.obj.money < 0) then
 							-- block neighbor
 							neighbor.useBy = neighbor.useBy+1
 							-- set tween
