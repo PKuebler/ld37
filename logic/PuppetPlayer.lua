@@ -6,6 +6,7 @@ function PuppetPlayer(data)
 	function self.load()
 		self.data.wave = 0
 		self.data.isWave = false
+		self.data.waves = 1
 		self.data.nextWave = 10
 		self.data.nextUnit = 0
 		self.data.sendUnits = 0
@@ -16,6 +17,7 @@ function PuppetPlayer(data)
 		-- finish?
 		if self.data.finishedUnits == 10 then
 			self.data.isWave = false
+			self.data.waves = self.data.waves+1
 		end
 
 		if self.data.isWave == false then

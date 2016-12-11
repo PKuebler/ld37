@@ -49,7 +49,7 @@ function WorldRenderer(data,w,h)
 		self.staticObjectSprite.draw()
 
 		for i,v in ipairs(self.data.dynamicObjects) do
-			love.graphics.circle( "fill", v.x+(self.data.tileSize/2), v.y+(self.data.tileSize/2), 10/2)
+			love.graphics.rectangle("fill", v.x+(self.data.tileSize/2), v.y+(self.data.tileSize/2)-10, 5, 10)
 		end
 
 		---------------------
