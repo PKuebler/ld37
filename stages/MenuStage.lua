@@ -3,7 +3,8 @@ require("ui.ButtonUI")
 
 function MenuStage(StageManager, data)
 	local self = {
-		data = data
+		data = data,
+		name = "menu"
 	}
 
 	local uiManager = nil

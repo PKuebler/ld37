@@ -10,7 +10,8 @@ function GameStage(StageManager, data)
 	-- Von aussen erreichbar
 	-----------------------
 	local self = {
-		data = data
+		data = data,
+		name = "game"
 	}
 	self.data.money = 50
 	self.data.tileSize = 32
@@ -58,8 +59,6 @@ function GameStage(StageManager, data)
 			worldRenderer.draw()
 			uiManager.draw()
 			inputController.draw()
-			love.graphics.setFont(self.data.assets.font12)
-			love.graphics.printf("units "..table.getn(self.data.dynamicObjects), love.graphics.getWidth()-205, 130, 200, "right")
 		else
 
 		end

@@ -1,7 +1,9 @@
 local loader = require '.utils.love-loader'
 
 function SplashStage(StageManager, data)
-	local self = {}
+	local self = {
+		name = "splash"
+	}
 
 	function self.start()
 		self.finishedLoading = false

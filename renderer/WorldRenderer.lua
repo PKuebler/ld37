@@ -62,6 +62,8 @@ function WorldRenderer(data,w,h)
 		---------------------
 		-- Draw Debug
 		---------------------
+		love.graphics.setColor(255,255,255,100)
+		love.graphics.setLineWidth( 5 )
 		local lastNode = nil
 		for i,node in ipairs(self.data["path"]) do
 			if lastNode ~= nil then

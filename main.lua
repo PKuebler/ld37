@@ -12,6 +12,7 @@ io.stdout:setvbuf('no')
 local data = {assets = {}}
 data.audio = Audio(data)
 local stages = StageManager(data)
+local debug = false
 
 
 function love.load()
@@ -32,14 +33,33 @@ end
 function love.draw()
 	stages.draw()
 
-	local stats = love.graphics.getStats()
-	love.graphics.setFont(love.graphics.newFont(12))
-	love.graphics.printf("draw calls "..stats.drawcalls, love.graphics.getWidth()-205, 10, 200, "right")
-	love.graphics.printf("canvas switches "..stats.canvasswitches, love.graphics.getWidth()-205, 30, 200, "right")
-	love.graphics.printf("texture memory "..stats.texturememory, love.graphics.getWidth()-205, 50, 200, "right")
-	love.graphics.printf("images "..stats.images, love.graphics.getWidth()-205, 70, 200, "right")
-	love.graphics.printf("canvases "..stats.canvases, love.graphics.getWidth()-205, 90, 200, "right")
-	love.graphics.printf("fonts "..stats.fonts, love.graphics.getWidth()-205, 110, 200, "right")
+	if debug then
+		local stats = love.graphics.getStats()
+		love.graphics.setFont(data.assets.font12)
+		love.graphics.printf("draw calls "..stats.drawcalls, love.graphics.getWidth()-205, 10, 200, "right")
+		love.graphics.printf("canvas switches "..stats.canvasswitches, love.graphics.getWidth()-205, 30, 200, "right")
+		love.graphics.printf("texture memory "..stats.texturememory, love.graphics.getWidth()-205, 50, 200, "right")
+		love.graphics.printf("images "..stats.images, love.graphics.getWidth()-205, 70, 200, "right")
+		love.graphics.printf("canvases "..stats.canvases, love.graphics.getWidth()-205, 90, 200, "right")
+		love.graphics.printf("fonts "..stats.fonts, love.graphics.getWidth()-205, 110, 200, "right")
+		love.graphics.printf("units "..table.getn(data.dynamicObjects), love.graphics.getWidth()-205, 130, 200, "right")
+	end
+end
+
+function love.keyreleased(key)
+   if key == "escape" then
+   		if stages.current.name == "game" then
+   			stages.toggle("menu")
+   		else
+	    	love.event.quit()
+	    end
+   elseif key == "space" then
+		if debug == true then
+			debug = false
+		else
+			debug = true
+		end
+	end
 end
 
 function love.mousereleased( x, y, button, istouch )

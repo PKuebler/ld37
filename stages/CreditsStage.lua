@@ -4,7 +4,8 @@ require("ui.ScrollTextUI")
 
 function CreditsStage(StageManager, data)
 	local self = {
-		data = data
+		data = data,
+		name = "credits"
 	}
 
 	local uiManager = nil
